@@ -1,13 +1,16 @@
 1) Download Hive
         --> https://dlcdn.apache.org/hive/hive-4.0.1/
 	--> tar -zxvf <hive_tar file> (Extract tar file)
+	
+2) Make hive-site.xml file in apache-hive-4.0.1-bin/conf
+	--> Add following properties in the hive-site.xml
 
-2) Update ./bashrc file
+3) Update ./bashrc file
 	--> export HIVE_HOME=/home/aman/Desktop/apache-hive-4.0.1-bin
 	--> export PATH=$PATH:$HIVE_HOME/bin
 	--> source ./bashrc (Reload the bashrc)
 
-3) Download  mysql-server for hive metastore
+4) Download  mysql-server for hive metastore
 	--> sudo apt-get install mysql-server
 	--> Fix "Access Denied for User 'root@localhost'"
 		--> sudo mysql -u root -p (login in to MySQL as Root with Elevated Privileges)
@@ -17,9 +20,11 @@
 		--> mysql -u root -p (Login to MySQL as Root).
 		--> Hit enter since no password is set.
 
-4) Download MySQL Connector Java to connect Hive to MySQL
+5) Download MySQL Connector Java to connect Hive to MySQL
 	--> https://mvnrepository.com/artifact/mysql/mysql-connector-java
 	--> Add the downloaded JAR file to apache-hive-4.0.1-bin/lib
 
-5) Make hive-site.xml file in apache-hive-4.0.1-bin/conf
-	--> Add following properties in the hive-site.xml
+6) Run the below command to create a metastore Schema in MySQL DB to store Hive metadata
+	--> bin/schematool -dbType mysql -initSchema (It creates around 56 tables in the MYSQL database, necessary for Hive to store metadata about databases,tables,partitions and other objects.)
+
+

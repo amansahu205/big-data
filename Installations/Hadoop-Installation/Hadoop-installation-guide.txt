@@ -1,13 +1,31 @@
 1) Install java 8
 
 	--> sudo apt install openjdk-8-jdk
+	
+2) Update ./bashrc file
 
-2) Install Hadoop
+	export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+	export PATH=$PATH:/usr/lib/jvm/java-8-openjdk-amd64/bin
+	export HADOOP_HOME=/home/aman/Desktop/hadoop-3.4.0/	
+	export PATH=$PATH:$HADOOP_HOME/bin
+	export PATH=$PATH:$HADOOP_HOME/sbin
+	export HADOOP_MAPRED_HOME=$HADOOP_HOME
+	export YARN_HOME=$HADOOP_HOME
+	export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+	export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native	
+	export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
+	export HADOOP_STREAMING=$HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-3.4.0.jar
+	export HADOOP_LOG_DIR=$HADOOP_HOME/logs
+	export PDSH_RCMD_TYPE=ssh
+	
+	source ./bashrc (Refresh the bashrc file)
+
+3) Install Hadoop
 
 	--> https://hadoop.apache.org/release/3.4.0.html
 	--> tar -zxvf ~/Downloads/hadoop-3.4.0.tar.gz (Extract tar file)
 
-3) Edit Hadoop configuration files at (/hadoop-3.4.0/etc/hadoop)
+4) Edit Hadoop configuration files at (/hadoop-3.4.0/etc/hadoop)
 
 	--> hadoop-env.sh
 		--> Set JAVA PATH (JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64)
@@ -15,7 +33,7 @@
 	--> hdfs-site.xml
 	--> mapred-site.xml
 	--> yarn-site.xml
-4) Setup SSH
+5) Setup SSH
 	--> ssh localhost
 	--> ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa (Create a ssh key)
 	--> cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys

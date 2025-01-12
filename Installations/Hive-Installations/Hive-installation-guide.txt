@@ -1,0 +1,25 @@
+1) Download Hive
+        --> https://dlcdn.apache.org/hive/hive-4.0.1/
+	--> tar -zxvf <hive_tar file> (Extract tar file)
+
+2) Update ./bashrc file
+	--> export HIVE_HOME=/home/aman/Desktop/apache-hive-4.0.1-bin
+	--> export PATH=$PATH:$HIVE_HOME/bin
+	--> source ./bashrc (Reload the bashrc)
+
+3) Download  mysql-server for hive metastore
+	--> sudo apt-get install mysql-server
+	--> Fix "Access Denied for User 'root@localhost'"
+		--> sudo mysql -u root -p (login in to MySQL as Root with Elevated Privileges)
+		--> USE mysql (Switch to `mysql` Database)
+		--> UPDATE user SET plugin='mysql_native_password' WHERE user='root'; (Update the Authentication Method for Root)
+		--> FLUSH PRIVILEGES; (Apply changes by flushing privileges)
+		--> mysql -u root -p (Login to MySQL as Root).
+		--> Hit enter since no password is set.
+
+4) Download MySQL Connector Java to connect Hive to MySQL
+	--> https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	--> Add the downloaded JAR file to apache-hive-4.0.1-bin/lib
+
+5) Make hive-site.xml file in apache-hive-4.0.1-bin/conf
+	--> Add following properties in the hive-site.xml
